@@ -3,6 +3,7 @@
 /**
  * print_char - prints character
  * @ap: argument pointer
+ * @params: the parameters struct
  *
  * Return: number chars printed
  */
@@ -42,7 +43,7 @@ int print_int(va_list ap, params_t *params)
 
 /**
  * print_string - prints string
- * @ap: argumet pointer
+ * @ap: argument pointer
  * @params: the parameters struct
  *
  * Return: number chars printed
@@ -53,10 +54,10 @@ int print_string(va_list ap, params_t *params)
 	unsigned int pad = 0, sum = 0, i = 0, j;
 
 	(void)params;
-	switch ((int) (!str))
-	case 1:
-		str = NULL_STRING;
-	
+	switch ((int)(!str))
+		case 1:
+			str = NULL_STRING;
+
 	j = pad = _strlen(str);
 	if (params->precision < pad)
 		j = pad = params->precision;
@@ -74,7 +75,7 @@ int print_string(va_list ap, params_t *params)
 	if (!params->minus_flag)
 	{
 		if (params->precision != UINT_MAX)
-			for(i = 0; i < pad; i++)
+			for (i = 0; i < pad; i++)
 				sum += _putchar(*str++);
 		else
 			sum += _puts(str);
@@ -83,13 +84,13 @@ int print_string(va_list ap, params_t *params)
 }
 
 /**
- * print_perecent - prints string
+ * print_percent - prints string
  * @ap: argument pointer
  * @params: the parameters struct
  *
  * Return: number chars printed
  */
-int print_perecent(va_list ap, params_t *params)
+int print_percent(va_list ap, params_t *params)
 {
 	(void)ap;
 	(void)params;
@@ -99,8 +100,9 @@ int print_perecent(va_list ap, params_t *params)
 /**
  * print_S - custom format specifier
  * @ap: argument pointer
+ * @params: the parameters struct
  *
- * Return: number char printed
+ * Return: number chars printed
  */
 int print_S(va_list ap, params_t *params)
 {
@@ -108,7 +110,7 @@ int print_S(va_list ap, params_t *params)
 	char *hex;
 	int sum = 0;
 
-	if ((int) (!str))
+	if ((int)(!str))
 		return (_puts(NULL_STRING));
 	for (; *str; str++)
 	{
@@ -116,9 +118,9 @@ int print_S(va_list ap, params_t *params)
 		{
 			sum += _putchar('\\');
 			sum += _putchar('x');
-			hex = convert (*str, 16, 0, params);
-			if(!hex[1])
-				sum += putchar('0');
+			hex = convert(*str, 16, 0, params);
+			if (!hex[1])
+				sum += _putchar('0');
 			sum += _puts(hex);
 		}
 		else
